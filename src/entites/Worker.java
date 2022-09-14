@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import enums.WorkerLevel;;
@@ -10,16 +11,26 @@ public class Worker {
     private Department department;
     private List <HourContact> contract = new ArrayList<>();
 
-    public void addContract(List <HourContact > contract){
-        this.setContract(contract);
+    public void addContract(HourContact contract){
+        this.contract.add(contract);
     }
 
-    public void removeContract(int position){
-        this.getContract(position).remove(position);
+    public void removeContract(HourContact contract){
+        this.contract.remove(contract);
     }
 
-    public double incomer(){
-        
+    public double incomer(int year, int month){
+        Calendar cal = Calendar.getInstance();        
+        double incom = this.getBaseSalary();        
+        for(HourContact c: contract){
+            cal.setTime(c.getDate());
+            int yearContract = cal.get(Calendar.YEAR);
+            int monthContract = 1 + cal.get(Calendar.MONTH);
+            if(yearContract == year && monthContract == month){
+                incom += c.totalValue();                
+            }
+        }
+        return incom;
     }
 
     public String getName() {
@@ -54,12 +65,7 @@ public class Worker {
         this.department = department;
     }
 
-    public List <HourContact> getContract(int position) {
-        return getContract(position);
-    }
-
-    public void setContract(List <HourContact> contract) {
-        this.contract.add((HourContact)contract);
-    }
-
+    public HourContact getContract(int position) {
+        return contract.get(position);
+    }   
 }

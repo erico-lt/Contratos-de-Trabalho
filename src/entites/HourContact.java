@@ -3,15 +3,15 @@ import java.util.Date;
 public class HourContact {
     private Date date;
     private double valuePerHour;
-    private int hours;
+    private Integer hours;    
    
     public HourContact(){        
     }
 
-    public HourContact(int hours){
-        this.setValuePerHour(35.45f);
-        this.setDate(date = new Date());
-        this.setHours(hours);
+    public HourContact(Integer hours, Date date){
+        this.setValuePerHour(35.45f);       
+        this.setHours(hours);  
+        this.setDate(date);      
     }
         
     public double totalValue(){
@@ -34,11 +34,11 @@ public class HourContact {
         this.valuePerHour = valuePerHour;
     }
 
-    public int getHours() {
+    public Integer getHours() {
         return hours;
     }
 
-    public void setHours(int hours) {
+    public void setHours(Integer hours) {
         this.hours = hours;
     }
 
