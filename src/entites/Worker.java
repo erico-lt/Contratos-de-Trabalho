@@ -1,8 +1,7 @@
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-
-import enums.WorkerLevel;;
+import enums.WorkerLevel;
 
 public class Worker {
     private String name;
@@ -10,6 +9,28 @@ public class Worker {
     private double baseSalary;
     private Department department;
     private List <HourContact> contract = new ArrayList<>();
+
+    public Worker(){        
+    }
+
+    public Worker(String name, WorkerLevel level, String department){
+        this.setName(name);
+        this.setLevel(level);
+        this.setDepartment(department);
+        switch(this.getLevel()){
+            case JUNIOR:
+                this.setBaseSalary(1.200f);
+                break;
+            case MID_LEVEL:
+                this.setBaseSalary(1.400f);
+                break;
+            case SENIOR:
+                this.setBaseSalary(1.600f);
+                break;  
+            default:
+                break;          
+        }
+    }
 
     public void addContract(HourContact contract){
         this.contract.add(contract);
@@ -19,19 +40,11 @@ public class Worker {
         this.contract.remove(contract);
     }
 
-    public double incomer(int year, int month){
-        Calendar cal = Calendar.getInstance();        
-        double incom = this.getBaseSalary();        
-        for(HourContact c: contract){
-            cal.setTime(c.getDate());
-            int yearContract = cal.get(Calendar.YEAR);
-            int monthContract = 1 + cal.get(Calendar.MONTH);
-            if(yearContract == year && monthContract == month){
-                incom += c.totalValue();                
-            }
-        }
+    public double incomer(int year, int month){               
+        double incom = this.getBaseSalary();
+        incom += totalIncom(contract, year, month);        
         return incom;
-    }
+    }      
 
     public String getName() {
         return name;
@@ -61,11 +74,27 @@ public class Worker {
         return department;
     }
 
-    public void setDepartment(Department department) {
-        this.department = department;
+    public void setDepartment(String department) {
+        this.department.setName(department);
     }
 
     public HourContact getContract(int position) {
         return contract.get(position);
     }   
+
+    //Função que retorn a renda de todos os contratos ativos do mês atual
+    public double totalIncom(List <HourContact> contract2,int  year,int month){
+        Calendar cal = Calendar.getInstance(); 
+        double incom = 0;
+        for(HourContact c: contract2){
+            cal.setTime(c.getDate());
+            int yearContract = cal.get(Calendar.YEAR);
+            int monthContract = 1 + cal.get(Calendar.MONTH);
+            if(yearContract == year && monthContract == month){
+                incom += c.totalValue();                
+            }
+        }
+        return incom;
+    }
+
 }
