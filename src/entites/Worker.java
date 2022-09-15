@@ -13,10 +13,10 @@ public class Worker {
     public Worker(){        
     }
 
-    public Worker(String name, WorkerLevel level, String department){
+    public Worker(String name, WorkerLevel level, String departmentName){
         this.setName(name);
         this.setLevel(level);
-        this.setDepartment(department);
+        this.setDepartment(departmentName);
         switch(this.getLevel()){
             case JUNIOR:
                 this.setBaseSalary(1.200f);
@@ -74,8 +74,8 @@ public class Worker {
         return department;
     }
 
-    public void setDepartment(String department) {
-        this.department.setName(department);
+    public void setDepartment(String departmentName) {
+        this.department.setName(departmentName);
     }
 
     public HourContact getContract(int position) {
