@@ -8,14 +8,14 @@ public class HourContact {
     public HourContact(){        
     }
 
-    public HourContact(Integer hours, Date date){
-        this.setValuePerHour(35.45f);       
-        this.setHours(hours);  
+    public HourContact(double valuePerHour, Integer hours, Date date){               
+        this.setValuePerHour(valuePerHour);       
+        this.setHours(hours);       
         this.setDate(date);      
     }
         
     public double totalValue(){
-        return this.getValuePerHour() * hours;
+        return this.getValuePerHour() * (hours * 22);
     }
 
     public Date getDate() {
@@ -42,4 +42,10 @@ public class HourContact {
         this.hours = hours;
     }
 
+    @Override
+    public String toString(){
+        return "Date: " + this.getDate() +
+        "\nValue Per Hour: " + this.getValuePerHour() +
+        "\nHours: " + this.getHours();
+    }
 }

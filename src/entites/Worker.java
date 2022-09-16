@@ -13,10 +13,10 @@ public class Worker {
     public Worker(){        
     }
 
-    public Worker(String name, WorkerLevel level, String departmentName){
+    public Worker(String name, WorkerLevel level, Department department){
         this.setName(name);
         this.setLevel(level);
-        this.setDepartment(departmentName);
+        this.setDepartment(department);
         switch(this.getLevel()){
             case JUNIOR:
                 this.setBaseSalary(1.200f);
@@ -40,7 +40,7 @@ public class Worker {
         this.contract.remove(contract);
     }
 
-    public double incomer(int year, int month){               
+    public double incomer(int year, int month){                        
         double incom = this.getBaseSalary();
         incom += totalIncom(contract, year, month);        
         return incom;
@@ -74,8 +74,8 @@ public class Worker {
         return department;
     }
 
-    public void setDepartment(String departmentName) {
-        this.department.setName(departmentName);
+    public void setDepartment(Department department) {
+        this.department = department;
     }
 
     public HourContact getContract(int position) {
@@ -84,7 +84,7 @@ public class Worker {
 
     //Função que retorn a renda de todos os contratos ativos do mês atual
     public double totalIncom(List <HourContact> contract2,int  year,int month){
-        Calendar cal = Calendar.getInstance(); 
+        Calendar cal = Calendar.getInstance();
         double incom = 0;
         for(HourContact c: contract2){
             cal.setTime(c.getDate());
