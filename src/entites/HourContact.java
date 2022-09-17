@@ -1,28 +1,31 @@
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class HourContact {
-    private Date date;
+    private LocalDate date;
     private double valuePerHour;
     private Integer hours;    
    
     public HourContact(){        
     }
 
-    public HourContact(double valuePerHour, Integer hours, Date date){               
+    public HourContact(double valuePerHour, Integer hours,String date){   
+        DateTimeFormatter dateForm = DateTimeFormatter.ofPattern("dd/MM/yyyy");            
         this.setValuePerHour(valuePerHour);       
         this.setHours(hours);       
-        this.setDate(date);      
+        LocalDate date2 = LocalDate.parse(date, dateForm);
+        this.setDate(date2);
     }
         
     public double totalValue(){
         return this.getValuePerHour() * (hours * 22);
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
