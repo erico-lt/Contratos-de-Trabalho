@@ -97,4 +97,12 @@ public class Worker {
         return incom;
     }
 
+    @Override
+    public String toString(){
+        return "Name: " + this.getName() + 
+        "\nLevel: " + this.getLevel()   +
+        "\nDepartment: " + department.toString() +
+        "\nIncom: ";
+    }
+
 }

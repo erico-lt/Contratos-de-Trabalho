@@ -1,11 +1,13 @@
 import enums.WorkerLevel;
+
+import java.text.ParseException;
 import java.util.Scanner;
 
 public class PrinciaplProgam {
-    public static void main(String[] args){
+    public static void main(String[] args) throws ParseException{
         Scanner sc = new Scanner(System.in);
-        Worker worker1;        
-
+        Worker worker1;               
+        
         System.out.printf("Entre com o seu departamento:");
         String departmentName = sc.nextLine();              
         Department department = new Department(departmentName);
@@ -15,11 +17,11 @@ public class PrinciaplProgam {
         String name = sc.nextLine();
         worker1 = new Worker(name,WorkerLevel.JUNIOR, department);
         /*System.out.printf("Level:");
-        String Level = sc.nextLine();*/
-        sc.nextLine();
+        String Level = sc.nextLine();*/        
         System.out.printf("How many contrcts to this worker?");  
         int qunatCont = sc.nextInt(); 
         for(int cont = 0; cont < qunatCont; cont++){
+            sc.nextLine();
             System.out.println("Enter contract " + (cont +1) + " dice");
             System.out.printf("Date (DD/MM/YYYY): ");
             String date = sc.nextLine();

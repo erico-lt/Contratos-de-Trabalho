@@ -1,31 +1,32 @@
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class HourContact {
-    private LocalDate date;
+    private Date date;
     private double valuePerHour;
     private Integer hours;    
    
     public HourContact(){        
     }
 
-    public HourContact(double valuePerHour, Integer hours,String date){   
-        DateTimeFormatter dateForm = DateTimeFormatter.ofPattern("dd/MM/yyyy");            
+    public HourContact(double valuePerHour, Integer hours,String date) throws ParseException{   
+        SimpleDateFormat sdf1 = new SimpleDateFormat("dd/MM/yyyy");
+        this.date = sdf1.parse(date);         
         this.setValuePerHour(valuePerHour);       
-        this.setHours(hours);       
-        LocalDate date2 = LocalDate.parse(date, dateForm);
-        this.setDate(date2);
+        this.setHours(hours);
+                                
     }
         
     public double totalValue(){
         return this.getValuePerHour() * (hours * 22);
     }
 
-    public LocalDate getDate() {
-        return date;
+    public Date getDate() {
+        return this.date;
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
