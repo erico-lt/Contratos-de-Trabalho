@@ -12,7 +12,7 @@ public class HourContact {
 
     public HourContact(double valuePerHour, Integer hours,String date) throws ParseException{   
         SimpleDateFormat sdf1 = new SimpleDateFormat("dd/MM/yyyy");
-        this.date = sdf1.parse(date);         
+        this.setDate(sdf1.parse(date));         
         this.setValuePerHour(valuePerHour);       
         this.setHours(hours);
                                 
