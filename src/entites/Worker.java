@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+Juimport java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -112,7 +112,7 @@ public class Worker {
                 return c;
             }
         }            
-        return contract2.get(-1);
+        return null;
     } 
 
     @Override
@@ -122,10 +122,6 @@ public class Worker {
         "\nDepartment: " +
         "\nIncom: ";
     }
-    public void contDice(){
-        for(HourContact c: contract){
-            System.out.println(c.toString());
-        }
-    }  
+    
 
 }
