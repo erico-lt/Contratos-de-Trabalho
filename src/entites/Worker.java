@@ -37,12 +37,9 @@ public class Worker {
     }
 
     public void removeContract(int year, int month){
-        Integer position = excluirContract(this.contract, year, month);
-        if(position == null){
+        int position = excluirContract(this.contract, year, month);
+        if(position >= 0 this.contract.remove(int)){
 
-        }else{
-            int posi = position;
-            this.contract.remove(posi);  
         }
         
     }
@@ -105,7 +102,7 @@ public class Worker {
     }
 
     //Funçao para buscar e retornar contratos a serem excluidos
-    public Integer excluirContract(List <HourContact> contract2, int year, int month){
+    public int excluirContract(List <HourContact> contract2, int year, int month){
         Calendar cal = Calendar.getInstance(); 
         int position = 0;       
         for(HourContact c: contract2){
@@ -118,7 +115,7 @@ public class Worker {
             }
             position += 1;
         }  
-        return null;               
+        return -1;              
     } 
 
     @Override
