@@ -121,9 +121,7 @@ public class Worker {
     @Override
     public String toString(){
         return "Name: " + this.getName() + 
-        "\nLevel: " + this.getLevel()   +
-        "\nDepartment: " + this.getDepartment().toString() +   
-        "\nIncom: " ;
+        "\nLevel: " + this.getLevel();
     }   
 
 }
