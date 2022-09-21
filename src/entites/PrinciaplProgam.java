@@ -1,6 +1,7 @@
 import enums.WorkerLevel;
-
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -24,10 +25,11 @@ public class PrinciaplProgam {
         System.out.printf("How many contrcts to this worker?");  
         int qunatCont = sc.nextInt(); 
         for(int cont = 0; cont < qunatCont; cont++){
+            SimpleDateFormat fdt = new SimpleDateFormat("dd/MM/yyyy");
             sc.nextLine();
             System.out.println("Enter contract " + (cont +1) + " dice");
             System.out.printf("Date (DD/MM/YYYY): ");
-            String date = sc.nextLine();
+            Date date = fdt.parse(sc.next());
             System.out.println("Value per hour: ");
             double valuePerHour = sc.nextDouble();
             System.out.println("Hour jober for day: ");
@@ -35,10 +37,10 @@ public class PrinciaplProgam {
             HourContact contract = new HourContact(valuePerHour, hours, date);
             worker1.addContract(contract);
         }            
+
+        
         worker1.removeContract(2022, 05);
-        for(int cont = 0; cont < 3; cont ++){
-            System.out.println( worker1.getContract(cont));
-        }       
+           
         
 
         sc.close();

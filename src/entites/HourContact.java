@@ -1,5 +1,4 @@
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class HourContact {
@@ -10,9 +9,8 @@ public class HourContact {
     public HourContact(){        
     }
 
-    public HourContact(double valuePerHour, Integer hours,String date) throws ParseException{   
-        SimpleDateFormat sdf1 = new SimpleDateFormat("dd/MM/yyyy");
-        this.setDate(sdf1.parse(date));         
+    public HourContact(double valuePerHour, Integer hours,Date date) throws ParseException{         
+        this.setDate(date);         
         this.setValuePerHour(valuePerHour);       
         this.setHours(hours);
                                 
@@ -45,11 +43,5 @@ public class HourContact {
     public void setHours(Integer hours) {
         this.hours = hours;
     }
-
-    @Override
-    public String toString(){
-        return "Date: " + this.getDate() +
-        "\nValue Per Hour: " + this.getValuePerHour() +
-        "\nHours: " + this.getHours();
-    }
+   
 }

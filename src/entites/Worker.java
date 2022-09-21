@@ -1,9 +1,6 @@
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-
-import javax.sound.sampled.SourceDataLine;
-
 import enums.WorkerLevel;
 
 public class Worker {
@@ -40,8 +37,14 @@ public class Worker {
     }
 
     public void removeContract(int year, int month){
-        HourContact contract2 = excluirContract(this.contract, year, month);
-        this.contract.remove(contract2);
+        Integer position = excluirContract(this.contract, year, month);
+        if(position == null){
+
+        }else{
+            int posi = position;
+            this.contract.remove(posi);  
+        }
+        
     }
 
     public double incomer(int year, int month){                        
@@ -102,30 +105,28 @@ public class Worker {
     }
 
     //Funçao para buscar e retornar contratos a serem excluidos
-    public HourContact excluirContract(List <HourContact> contract2, int year, int month){
-        Calendar cal = Calendar.getInstance();        
+    public Integer excluirContract(List <HourContact> contract2, int year, int month){
+        Calendar cal = Calendar.getInstance(); 
+        int position = 0;       
         for(HourContact c: contract2){
+            
             cal.setTime(c.getDate());
             int yearContrac = cal.get(Calendar.YEAR);
             int monthContrac = cal.get(Calendar.MONTH);
             if((yearContrac == year) && (monthContrac == month)){
-                return c;
+                return position;
             }
-        }            
-        return contract2.get(-1);
+            position += 1;
+        }  
+        return null;               
     } 
 
     @Override
     public String toString(){
         return "Name: " + this.getName() + 
         "\nLevel: " + this.getLevel()   +
-        "\nDepartment: " +
-        "\nIncom: ";
-    }
-    public void contDice(){
-        for(HourContact c: contract){
-            System.out.println(c.toString());
-        }
-    }  
+        "\nDepartment: " + this.getDepartment().toString() +   
+        "\nIncom: " ;
+    }   
 
 }
